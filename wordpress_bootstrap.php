@@ -1,0 +1,19 @@
+<?php
+function custom_theme_enqueue_styles() {
+	
+	$parent_style = 'parent-style'; // custom css
+
+	wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
+	wp_enqueue_style( 'child-style', 	get_stylesheet_directory_uri() . '/style.css', 
+		array( $parent_style ), 
+	wp_get_theme()->get('Version')
+	);
+
+	wp_enqueue_style('bootstrap', get_stylesheet_directory_uri() . '/bootstrap/css/bootstrap.min.css');
+
+	wp_enqueue_script('bootstrap', get_stylesheet_directory_uri() . '/bootstrap/js/bootstrap.min.js');
+
+
+}
+add_action( 'wp_enqueue_scripts', 'custom_theme_enqueue_styles' );
+?>
